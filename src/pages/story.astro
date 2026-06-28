@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+
+const team = [
+  {
+    name: 'Prateek Roy',
+    initials: 'PR',
+    role: 'President',
+    bio: 'A passionate problem-solver, Minnesota All-State Math Team member, and UMTYMP student who has represented Minnesota at the National Science Olympiad.',
+  },
+  {
+    name: 'Jonathan Rubin',
+    initials: 'JR',
+    role: 'Volunteer Lead',
+    bio: 'A junior at Eagan High School completing his final year of UMTYMP. He has taken every AP math class and competes in Science Olympiad, Math Team, and more.',
+  },
+  {
+    name: 'Avik Shah',
+    initials: 'AS',
+    role: 'Outreach Lead',
+    bio: 'A freshman at Eagan High School who completed two years of UMTYMP and is currently taking AP Calculus BC, alongside debate, Science Olympiad, and athletics.',
+  },
+  {
+    name: 'Gabriel Rubin',
+    initials: 'GR',
+    role: 'Advanced Mathematics Tutor',
+    bio: 'Completed AP Calculus BC as a sophomore with a perfect score of 5 and is now enrolled in Multivariable Calculus at the University of Minnesota.',
+  },
+  {
+    name: 'Aarav Shah',
+    initials: 'AS',
+    role: 'Advanced Mathematics Tutor',
+    bio: 'A ninth grader in his third year of UMTYMP, with two years of Saturday Morning Math (MATHCEP) and a love of helping younger students prepare for competitions.',
+  },
+];
+---
+
+<Base title="Our Story — Mu Alpha Theta" description="How two Eagan High School students built a math-coaching initiative that turns excellence in mathematics into service for underprivileged children in India.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Our Story</p>
+      <h1 style="max-width: 22ch;">Built by students, for students — with a purpose bigger than math.</h1>
+      <p class="lead">
+        Mu Alpha Theta began with a simple conviction: that the discipline and joy of
+        mathematics is worth sharing, and that the talent it builds can be turned outward to
+        serve people who need it most.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Founders' statement — DRAFT for the founders to personalize -->
+  <section class="section">
+    <div class="wrap" style="max-width:48rem;">
+      <p class="eyebrow">From the founders</p>
+      <h2>Why we started this.</h2>
+      <p>
+        We are Prateek Roy and Jonathan Rubin, two Eagan High School students who grew up loving
+        math — and who were lucky enough to have mentors and programs like UMTYMP push us further
+        than we thought we could go. We started Mu Alpha Theta to pass that gift forward: to
+        coach younger students toward the same opportunities, for free.
+      </p>
+      <p>
+        But we wanted it to mean more than medals. So we built giving into the heart of the
+        program. Every family we coach is invited to support underprivileged children in India —
+        children for whom the daily necessities of life are not a given. Our goal is to instill
+        excellence in math while using that education as a means of serving others, on an
+        international scale.
+      </p>
+      <p>
+        This is only the beginning. Our first cohort already brought home a team trophy and
+        individual medals. We can't wait to see how far the next group goes — and how many lives
+        their effort can touch.
+      </p>
+      <p style="font-family:var(--font-display); font-size:var(--step-1); color:var(--ink); margin-top:1.5rem;">
+        — Prateek Roy &amp; Jonathan Rubin
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow">The team</p>
+      <h2 style="margin-bottom:2rem;">The coaches behind the program.</h2>
+      <div class="grid grid--2">
+        {team.map((m) => (
+          <div class="card member">
+            <span class="avatar" aria-hidden="true">{m.initials}</span>
+            <div>
+              <h3>{m.name}</h3>
+              <p class="role">{m.role}</p>
+              <p>{m.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap center">
+      <h2 style="max-width:24ch; margin-inline:auto;">Join us — as a student, a coach, or a supporter.</h2>
+      <div style="display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
+        <a class="btn btn--primary" href="/contact/">Get in touch</a>
+        <a class="btn btn--ghost" href="/support/">Support the cause</a>
+      </div>
+    </div>
+  </section>
+</Base>

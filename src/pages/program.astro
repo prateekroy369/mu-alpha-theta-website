@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import coaching from '../assets/gallery/tutoring-session.jpg';
+---
+
+<Base title="Our Program — Mu Alpha Theta" description="Free, rigorous math coaching for elementary and middle school students preparing for UMTYMP and the Math Masters competition.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Our Program</p>
+      <h1 style="max-width: 20ch;">Coaching young mathematicians toward UMTYMP and Math Masters.</h1>
+      <p class="lead">
+        We prepare motivated elementary and middle school students for two of the most
+        respected proving grounds in Minnesota mathematics — the University of Minnesota
+        Talented Youth Mathematics Program (UMTYMP) and the Math Masters competition.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="wrap grid grid--2" style="align-items:center;">
+      <div>
+        <p class="eyebrow">What is UMTYMP?</p>
+        <h2>An accelerated path through advanced mathematics.</h2>
+        <p>
+          UMTYMP is a highly selective program run by the University of Minnesota that takes
+          talented young students from algebra through multivariable calculus — years ahead of
+          the standard track. Admission is by a competitive entrance exam, and our coaching is
+          built to prepare students for exactly that challenge.
+        </p>
+        <p>
+          Our own coaches are UMTYMP students themselves, so the guidance comes from people who
+          have recently walked the same path.
+        </p>
+      </div>
+      <figure class="hero__media">
+        <Image src={coaching} alt="A coaching session: students working through problems around a table with their high-school mentors" widths={[480, 800]} sizes="(max-width: 900px) 100vw, 45vw" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow">How we coach</p>
+      <h2>A simple, proven approach.</h2>
+      <ol class="steps" style="margin-top:2rem; max-width:48rem;">
+        <li>
+          <h3>Build the foundations</h3>
+          <p>We start with number sense, problem-solving habits, and the core arithmetic fluency that competitions like Math Masters reward.</p>
+        </li>
+        <li>
+          <h3>Train for the test</h3>
+          <p>Targeted practice on UMTYMP-style and competition problems, with timed drills and worked walkthroughs.</p>
+        </li>
+        <li>
+          <h3>Compete with confidence</h3>
+          <p>Students take the stage at Math Masters and sit the UMTYMP entrance exam — prepared, supported, and ready.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>Who it's for</h3>
+          <p>Motivated elementary and middle school students in the Eagan area who love a challenge.</p>
+        </div>
+        <div class="card">
+          <h3>What it costs</h3>
+          <p>Coaching is free. Families are warmly invited — never required — to make an optional donation to our cause.</p>
+        </div>
+        <div class="card">
+          <h3>Who coaches</h3>
+          <p>Eagan High School students and UMTYMP participants who have excelled in advanced math themselves.</p>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem;">
+        <a class="btn btn--primary" href="/contact/">Enroll a student</a>
+      </div>
+    </div>
+  </section>
+</Base>

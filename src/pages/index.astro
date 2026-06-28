@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import heroImg from '../assets/gallery/team-award-plaque.jpg';
+---
+
+<Base title="Mu Alpha Theta — Math Without Borders">
+  <!-- Hero -->
+  <section class="section">
+    <div class="wrap hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Mu Alpha Theta · Eagan High School</p>
+        <h1 style="max-width: 18ch;">Excellence in math, in service of others.</h1>
+        <p class="lead">
+          We are a student-led initiative coaching elementary and middle schoolers toward
+          the University of Minnesota's UMTYMP program and the Math Masters competition —
+          while turning that effort into support for underprivileged children in India.
+        </p>
+        <div style="display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.75rem;">
+          <a class="btn btn--primary" href="/program/">Explore the program</a>
+          <a class="btn btn--ghost" href="/support/">Support the cause</a>
+        </div>
+      </div>
+      <figure class="hero__media">
+        <Image src={heroImg} alt="Our Grade Five team holding their Second Place Math Masters team award, with their high-school coaches" widths={[480, 800, 1100]} sizes="(max-width: 900px) 100vw, 45vw" loading="eager" />
+        <figcaption>Math Masters 2026 — 2nd Place, Grade Five Team Award</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- Mission / two-pillar -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Our goal</p>
+      <h2 style="max-width: 20ch;">Instill excellence in math. Use it to serve.</h2>
+      <p class="lead" style="margin-bottom:2.5rem;">
+        Through tutoring and fundraising, we help students master mathematics — and we
+        channel that momentum outward, donating on an international scale to help
+        underprivileged children in India meet the daily necessities of life.
+      </p>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>Coach</h3>
+          <p>Free, rigorous coaching for elementary and middle school students preparing for UMTYMP and Math Masters.</p>
+        </div>
+        <div class="card">
+          <h3>Compete</h3>
+          <p>We prepare young mathematicians to perform on the state's most respected competition stages.</p>
+        </div>
+        <div class="card">
+          <h3>Give back</h3>
+          <p>Fundraising proceeds go toward daily necessities for children in India who need them most.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof point -->
+  <section class="section section--alt">
+    <div class="wrap center">
+      <p class="eyebrow center">Proven results</p>
+      <h2 style="max-width: 24ch; margin-inline:auto;">Our first cohort took home the hardware.</h2>
+      <p class="lead center" style="margin-bottom:2rem;">
+        In their debut season, our Glacier Hills students earned a 2nd Place Grade Five
+        Team Award at Math Masters 2026, along with individual medals and a statewide
+        fact-drill placement.
+      </p>
+      <a class="btn btn--primary" href="/achievements/">See the achievements</a>
+    </div>
+  </section>
+</Base>

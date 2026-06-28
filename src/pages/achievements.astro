@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+
+import teamAward from '../assets/gallery/team-award-plaque.jpg';
+import fullTeam from '../assets/gallery/full-team.jpg';
+import whiteboard from '../assets/gallery/whiteboard-2026.jpg';
+import stageMedals from '../assets/gallery/stage-medals.jpg';
+import celebration from '../assets/gallery/celebration.jpg';
+import individualPlaque from '../assets/gallery/individual-plaque.jpg';
+import mentorship from '../assets/gallery/coaching-mentorship.jpg';
+import tutoring from '../assets/gallery/tutoring-session.jpg';
+import teamSeated from '../assets/gallery/team-seated.jpg';
+import stageLineup from '../assets/gallery/stage-lineup.jpg';
+
+const gallery = [
+  { src: fullTeam, alt: 'The full Glacier Hills team with their two high-school coaches', caption: 'The team and their coaches' },
+  { src: whiteboard, alt: 'Students and coaches in front of a whiteboard reading "Math Masters 2026!"', caption: 'Math Masters 2026' },
+  { src: stageMedals, alt: 'Students on stage wearing their competition medals', caption: 'On stage with medals' },
+  { src: individualPlaque, alt: 'A student holding the Second Place Grade Five Team Award plaque', caption: 'Grade Five Team Award' },
+  { src: celebration, alt: 'Students celebrating together at the competition', caption: 'Competition day' },
+  { src: mentorship, alt: 'High-school coaches talking with the seated team before the awards', caption: 'Coaches and team' },
+  { src: tutoring, alt: 'A coaching session around a table', caption: 'Where it starts: practice' },
+  { src: teamSeated, alt: 'Five students in Math Masters shirts, smiling', caption: 'Team Glacier Hills' },
+  { src: stageLineup, alt: 'Students lined up on stage at the awards ceremony', caption: 'Awards ceremony' },
+];
+---
+
+<Base title="Achievements — Mu Alpha Theta" description="In their debut season, our Glacier Hills students earned a 2nd Place Grade Five Team Award at Math Masters 2026, with individual medals and a statewide fact-drill placement.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Achievements · Math Masters 2026</p>
+      <h1 style="max-width: 22ch;">Our first cohort took home the hardware.</h1>
+      <p class="lead">
+        In their very first season, the students we coached at Glacier Hills Elementary
+        School of Arts &amp; Science competed at Math Masters 2026 — and brought home a team
+        trophy, individual medals, and a statewide placement.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="grid grid--2" style="align-items:center;">
+        <figure class="hero__media">
+          <Image src={teamAward} alt="The Grade Five team holding their Second Place team plaque, medals and a blue ribbon visible" widths={[480, 800, 1100]} sizes="(max-width: 900px) 100vw, 45vw" />
+        </figure>
+        <div>
+          <div class="stats">
+            <div class="stat">
+              <div class="num">2nd</div>
+              <div class="label">Place — Grade Five Team Award, Math Masters 2026</div>
+            </div>
+            <div class="stat">
+              <div class="num">3rd</div>
+              <div class="label">Statewide — 5th Grade Fact Drill (Anya Vartak)</div>
+            </div>
+            <div class="stat">
+              <div class="num">Medals</div>
+              <div class="label">Individual medals across the Grade Five team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <p class="eyebrow">In pictures</p>
+      <h2 style="margin-bottom:2rem;">Competition day at Glacier Hills.</h2>
+      <div class="gallery">
+        {gallery.map((p) => (
+          <figure>
+            <Image src={p.src} alt={p.alt} widths={[320, 640]} sizes="(max-width: 600px) 100vw, 33vw" />
+            <figcaption>{p.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap callout center">
+      <h2 style="margin-inline:auto; max-width:24ch;">This is just the first cohort.</h2>
+      <p class="lead center" style="margin-inline:auto; margin-bottom:1.5rem;">
+        Every student we coach — and every family who chooses to give — helps the next group of
+        young mathematicians, and children in need an ocean away.
+      </p>
+      <a class="btn btn--primary" href="/support/">See how you can help</a>
+    </div>
+  </section>
+</Base>

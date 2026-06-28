@@ -1,0 +1,16 @@
+# build output
+dist/
+# generated types
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+# environment
+.env
+.env.production
+# local proxy workaround (machine-specific, not for CI)
+.npmrc
+# os
+.DS_Store
+Thumbs.db
