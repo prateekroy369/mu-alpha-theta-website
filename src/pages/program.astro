@@ -2,18 +2,29 @@
 import Base from '../layouts/Base.astro';
 import { Image } from 'astro:assets';
 import coaching from '../assets/gallery/tutoring-session.jpg';
+import pythagoras from '../assets/math-pythagoras.png';
+
+const enrollmentForm = 'https://forms.gle/dFWTknm6hXb7Jhd39';
 ---
 
 <Base title="Our Program — Mu Alpha Theta" description="Free, rigorous math coaching for elementary and middle school students preparing for UMTYMP and the Math Masters competition.">
   <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Our Program</p>
-      <h1 style="max-width: 20ch;">Coaching young mathematicians toward UMTYMP and Math Masters.</h1>
-      <p class="lead">
-        We prepare motivated elementary and middle school students for two of the most
-        respected proving grounds in Minnesota mathematics — the University of Minnesota
-        Talented Youth Mathematics Program (UMTYMP) and the Math Masters competition.
-      </p>
+    <div class="wrap hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Our Program · Arete — the function is peak</p>
+        <h1 style="max-width: 20ch;">Coaching young mathematicians toward UMTYMP and Math Masters.</h1>
+        <p class="lead">
+          We prepare motivated elementary and middle school students for two of the most
+          respected proving grounds in Minnesota mathematics — the University of Minnesota
+          Talented Youth Mathematics Program (UMTYMP) and the Math Masters competition.
+        </p>
+        <div style="margin-top:1.75rem;">
+          <a class="btn btn--primary" href={enrollmentForm} target="_blank" rel="noopener">Enroll a student</a>
+        </div>
+      </div>
+      <figure style="margin:0; justify-self:center; max-width:340px;">
+        <Image src={pythagoras} alt="Pythagorean-theorem illustration spelling Mu Alpha Theta (MAΘ) across the three squares" widths={[280, 480]} sizes="(max-width: 900px) 55vw, 32vw" />
+      </figure>
     </div>
   </section>
 
@@ -43,6 +54,23 @@ import coaching from '../assets/gallery/tutoring-session.jpg';
 
   <section class="section section--alt">
     <div class="wrap">
+      <p class="eyebrow">What students work on</p>
+      <h2 style="margin-bottom:2rem;">From foundations to advanced topics.</h2>
+      <div class="grid grid--2">
+        <div class="card">
+          <h3>Math workshops</h3>
+          <p>School-subject math workshops that strengthen core problem-solving abilities and the arithmetic fluency competitions reward.</p>
+        </div>
+        <div class="card">
+          <h3>Calculus &amp; advanced topics</h3>
+          <p>For students ready to go further — exploring the beauty of advanced mathematics and the ideas behind it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
       <p class="eyebrow">How we coach</p>
       <h2>A simple, proven approach.</h2>
       <ol class="steps" style="margin-top:2rem; max-width:48rem;">
@@ -62,7 +90,7 @@ import coaching from '../assets/gallery/tutoring-session.jpg';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--alt">
     <div class="wrap">
       <div class="grid grid--3">
         <div class="card">
@@ -79,7 +107,7 @@ import coaching from '../assets/gallery/tutoring-session.jpg';
         </div>
       </div>
       <div style="margin-top:2.5rem;">
-        <a class="btn btn--primary" href="/contact/">Enroll a student</a>
+        <a class="btn btn--primary" href={enrollmentForm} target="_blank" rel="noopener">Enroll a student</a>
       </div>
     </div>
   </section>

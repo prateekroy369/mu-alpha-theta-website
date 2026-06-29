@@ -1,34 +1,50 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+
+import prateekImg from '../assets/team/prateek.jpg';
+import jonathanImg from '../assets/team/jonathan.jpg';
+import avikImg from '../assets/team/avik.jpg';
+import aaravImg from '../assets/team/aarav.jpg';
+
+// Student enrollment + volunteer sign-up Google Forms.
+// NOTE: both links are currently the same — awaiting the distinct volunteer form URL.
+const enrollmentForm = 'https://forms.gle/dFWTknm6hXb7Jhd39';
+const volunteerForm = 'https://forms.gle/dFWTknm6hXb7Jhd39';
 
 const team = [
   {
     name: 'Prateek Roy',
     initials: 'PR',
+    photo: prateekImg,
     role: 'President',
     bio: 'A passionate problem-solver, Minnesota All-State Math Team member, and UMTYMP student who has represented Minnesota at the National Science Olympiad.',
   },
   {
     name: 'Jonathan Rubin',
     initials: 'JR',
+    photo: jonathanImg,
     role: 'Volunteer Lead',
     bio: 'A junior at Eagan High School completing his final year of UMTYMP. He has taken every AP math class and competes in Science Olympiad, Math Team, and more.',
   },
   {
     name: 'Avik Shah',
     initials: 'AS',
+    photo: avikImg,
     role: 'Outreach Lead',
     bio: 'A freshman at Eagan High School who completed two years of UMTYMP and is currently taking AP Calculus BC, alongside debate, Science Olympiad, and athletics.',
   },
   {
     name: 'Gabriel Rubin',
     initials: 'GR',
+    photo: null,
     role: 'Advanced Mathematics Tutor',
     bio: 'Completed AP Calculus BC as a sophomore with a perfect score of 5 and is now enrolled in Multivariable Calculus at the University of Minnesota.',
   },
   {
     name: 'Aarav Shah',
     initials: 'AS',
+    photo: aaravImg,
     role: 'Advanced Mathematics Tutor',
     bio: 'A ninth grader in his third year of UMTYMP, with two years of Saturday Morning Math (MATHCEP) and a love of helping younger students prepare for competitions.',
   },
@@ -79,14 +95,39 @@ const team = [
     </div>
   </section>
 
+  <!-- Mission (carried over and refined from the original site) -->
   <section class="section section--alt">
+    <div class="wrap" style="max-width:52rem;">
+      <p class="eyebrow">Our Mission · Telos — the end is the beginning</p>
+      <h2>Excellence in mathematics, developed in service.</h2>
+      <p>
+        Mu Alpha Theta promotes the value of excellence in mathematics by developing leadership,
+        service, and academic achievement. Our local chapter works to increase the availability
+        of high-quality mathematical education — reaching out to our community through workshops
+        and practice sessions.
+      </p>
+      <p>
+        Most importantly, we aim to extend that education beyond borders: providing students in
+        underserved communities around the world with content through free online education, and
+        directing our fundraising toward children in India who need it most.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap">
       <p class="eyebrow">The team</p>
       <h2 style="margin-bottom:2rem;">The coaches behind the program.</h2>
       <div class="grid grid--2">
         {team.map((m) => (
           <div class="card member">
-            <span class="avatar" aria-hidden="true">{m.initials}</span>
+            {m.photo ? (
+              <span class="avatar avatar--photo" aria-hidden="true">
+                <Image src={m.photo} alt={`Portrait of ${m.name}`} width={120} height={120} />
+              </span>
+            ) : (
+              <span class="avatar" aria-hidden="true">{m.initials}</span>
+            )}
             <div>
               <h3>{m.name}</h3>
               <p class="role">{m.role}</p>
@@ -98,11 +139,12 @@ const team = [
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--alt">
     <div class="wrap center">
       <h2 style="max-width:24ch; margin-inline:auto;">Join us — as a student, a coach, or a supporter.</h2>
       <div style="display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem;">
-        <a class="btn btn--primary" href="/contact/">Get in touch</a>
+        <a class="btn btn--primary" href={enrollmentForm} target="_blank" rel="noopener">Enroll a student</a>
+        <a class="btn btn--ghost" href={volunteerForm} target="_blank" rel="noopener">Volunteer to coach</a>
         <a class="btn btn--ghost" href="/support/">Support the cause</a>
       </div>
     </div>

@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const enrollmentForm = 'https://forms.gle/dFWTknm6hXb7Jhd39';
+const volunteerForm = 'https://forms.gle/dFWTknm6hXb7Jhd39';
 ---
 
 <Base title="Contact — Mu Alpha Theta" description="Enroll a student, volunteer as a coach, or ask about supporting our cause. Reach the Eagan chapter of Mu Alpha Theta.">
@@ -21,12 +24,12 @@ import Base from '../layouts/Base.astro';
       <div class="card">
         <h3>Enroll a student</h3>
         <p>For elementary and middle school students preparing for UMTYMP or Math Masters.</p>
-        <p class="mt-0"><a href="mailto:mualphatheta@gmail.com?subject=Student%20enrollment">Email to enroll →</a></p>
+        <p class="mt-0"><a href={enrollmentForm} target="_blank" rel="noopener">Sign up as a student →</a></p>
       </div>
       <div class="card">
         <h3>Volunteer to coach</h3>
         <p>High school students strong in math who want to teach and mentor.</p>
-        <p class="mt-0"><a href="mailto:mualphatheta@gmail.com?subject=Volunteering%20to%20coach">Email to volunteer →</a></p>
+        <p class="mt-0"><a href={volunteerForm} target="_blank" rel="noopener">Sign up as a volunteer →</a></p>
       </div>
       <div class="card">
         <h3>Support the cause</h3>
@@ -37,10 +40,10 @@ import Base from '../layouts/Base.astro';
 
     <div class="wrap" style="padding-inline:0; margin-top:3rem;">
       <p class="eyebrow">Reach us directly</p>
-      <p style="font-size:var(--step-1);">
+      <p style="font-size:var(--step-1); margin-bottom:0.25rem;">
         <a href="mailto:mualphatheta@gmail.com">mualphatheta@gmail.com</a>
       </p>
-      <p class="lead">Eagan, Minnesota</p>
+      <p class="lead" style="margin-bottom:0;">4185 Braddock Trail, Eagan, MN 55123</p>
     </div>
   </section>
 </Base>
