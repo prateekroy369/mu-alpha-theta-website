@@ -12,6 +12,9 @@ import mentorship from '../assets/gallery/coaching-mentorship.jpg';
 import tutoring from '../assets/gallery/tutoring-session.jpg';
 import teamSeated from '../assets/gallery/team-seated.jpg';
 import stageLineup from '../assets/gallery/stage-lineup.jpg';
+import grade4Prize from '../assets/gallery/grade4-prize.jpg';
+import grade4Team from '../assets/gallery/grade4-team.jpg';
+import grade4Candid from '../assets/gallery/grade4-candid.jpg';
 
 const gallery = [
   { src: fullTeam, alt: 'The full Glacier Hills team with their two high-school coaches', caption: 'The team and their coaches' },
@@ -23,6 +26,8 @@ const gallery = [
   { src: tutoring, alt: 'A coaching session around a table', caption: 'Where it starts: practice' },
   { src: teamSeated, alt: 'Five students in Math Masters shirts, smiling', caption: 'Team Glacier Hills' },
   { src: stageLineup, alt: 'Students lined up on stage at the awards ceremony', caption: 'Awards ceremony' },
+  { src: grade4Team, alt: 'The Grade Four team with their high-school coach at the competition', caption: 'Grade Four team' },
+  { src: grade4Candid, alt: 'Grade Four students at the competition', caption: 'Grade Four, competition day' },
 ];
 ---
 
@@ -62,6 +67,30 @@ const gallery = [
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <p class="eyebrow">Grade Four · Glacier Hills Elementary</p>
+      <h2 style="max-width: 22ch;">And our Grade Four team made their mark, too.</h2>
+      <div class="grid grid--2" style="align-items:center; margin-top:1.5rem;">
+        <div>
+          <div class="stats">
+            <div class="stat">
+              <div class="num">6th</div>
+              <div class="label">Place — Grade Four Team Award, Math Masters 2026</div>
+            </div>
+            <div class="stat">
+              <div class="num">3</div>
+              <div class="label">Individual prizes across the Grade Four team</div>
+            </div>
+          </div>
+        </div>
+        <figure class="hero__media">
+          <Image src={grade4Prize} alt="The Grade Four team and their coach holding their competition certificate" widths={[480, 800, 1100]} sizes="(max-width: 900px) 100vw, 45vw" />
+        </figure>
       </div>
     </div>
   </section>
