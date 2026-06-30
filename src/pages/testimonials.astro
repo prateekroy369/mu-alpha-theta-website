@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+
+// ── Configuration ───────────────────────────────────────────────
+// Fill these in once the Google Form + Sheet exist (see README/instructions).
+//  - formUrl: the public Google Form parents use to submit a testimonial.
+//  - sheetId: the ID from the Google Sheet URL
+//             (docs.google.com/spreadsheets/d/<THIS_PART>/edit).
+//  - sheetTab: the tab name that holds form responses (default below).
+// The sheet must be shared "Anyone with the link – Viewer" (or Published to web)
+// and have an "Approved" column; only rows marked yes/true are shown.
+const formUrl = 'https://forms.gle/Vi63LytaWAVYytjZ7';
+const sheetId = '1eKSzxUaW6IDjmjmFOQblXDBuxQv5sfDMi9Sxbhnj9Gw';
+const sheetTab = 'Form Responses 1';
+---
+
+<Base title="Parent Testimonials — Mu Alpha Theta" description="What parents say about our free math coaching for UMTYMP and Math Masters — and the cause it supports.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Parent Testimonials</p>
+      <h1 style="max-width: 22ch;">What families say.</h1>
+      <p class="lead">
+        Hear from the parents whose children have learned, competed, and grown with us — and
+        who are helping children in India along the way.
+      </p>
+      {formUrl && (
+        <div style="margin-top:1.75rem;">
+          <a class="btn btn--primary" href={formUrl} target="_blank" rel="noopener">Share your experience</a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section">
+    <div class="wrap">
+      <div id="testimonials" class="testimonials" aria-live="polite">
+        <p class="muted" id="testimonials-status">Loading testimonials…</p>
+      </div>
+    </div>
+  </section>
+
+  {formUrl && (
+    <section class="section section--alt">
+      <div class="wrap center">
+        <h2 style="max-width:24ch; margin-inline:auto;">Coached with us? We'd love to hear from you.</h2>
+        <div style="margin-top:1.5rem;">
+          <a class="btn btn--primary" href={formUrl} target="_blank" rel="noopener">Share your experience</a>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<script define:vars={{ sheetId, sheetTab }}>
+  // Fetch approved testimonials from a public Google Sheet (gviz JSON) and render
+  // them client-side. No backend; updates appear as soon as the sheet changes.
+  const container = document.getElementById('testimonials');
+  const status = document.getElementById('testimonials-status');
+
+  const setStatus = (msg) => { if (status) status.textContent = msg; };
+
+  const findCol = (cols, ...keys) =>
+    cols.findIndex((label) => keys.some((k) => label.includes(k)));
+
+  async function load() {
+    if (!sheetId) {
+      setStatus('Testimonials will appear here soon — check back shortly.');
+      return;
+    }
+    try {
+      const url =
+        `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq` +
+        `?tqx=out:json&headers=1&sheet=${encodeURIComponent(sheetTab)}`;
+      const res = await fetch(url);
+      const text = await res.text();
+      const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1));
+
+      const cols = json.table.cols.map((c) => (c.label || '').toLowerCase());
+      const iName = findCol(cols, 'name');
+      const iRel = findCol(cols, 'relationship', 'role', 'parent of');
+      const iText = findCol(cols, 'testimonial', 'experience', 'message', 'comment');
+      const iApproved = findCol(cols, 'approved', 'approve', 'publish');
+
+      const approvedValues = ['yes', 'true', 'y', 'approved', '1', 'x'];
+      const cell = (row, i) => (i >= 0 && row.c[i] ? row.c[i].v : null);
+
+      const items = (json.table.rows || [])
+        .filter((r) => r && r.c)
+        .map((r) => ({
+          name: cell(r, iName),
+          rel: cell(r, iRel),
+          text: cell(r, iText),
+          approved: String(cell(r, iApproved) ?? '').trim().toLowerCase(),
+        }))
+        .filter((t) => t.text && approvedValues.includes(t.approved));
+
+      render(items);
+    } catch (err) {
+      setStatus('Testimonials are taking a moment to load. Please refresh, or check back soon.');
+    }
+  }
+
+  function render(items) {
+    container.innerHTML = '';
+    if (!items.length) {
+      const p = document.createElement('p');
+      p.className = 'muted';
+      p.textContent = 'No testimonials yet — be the first to share your experience!';
+      container.appendChild(p);
+      return;
+    }
+    const grid = document.createElement('div');
+    grid.className = 'grid grid--2';
+    // textContent everywhere — never inject sheet content as HTML.
+    for (const t of items) {
+      const card = document.createElement('figure');
+      card.className = 'card testimonial';
+      const quote = document.createElement('blockquote');
+      quote.textContent = t.text;
+      const cite = document.createElement('figcaption');
+      const who = [t.name, t.rel].filter(Boolean).join(', ');
+      cite.textContent = who ? `— ${who}` : '— A parent';
+      card.appendChild(quote);
+      card.appendChild(cite);
+      grid.appendChild(card);
+    }
+    container.appendChild(grid);
+  }
+
+  load();
+</script>
