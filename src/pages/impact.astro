@@ -1,0 +1,167 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image, getImage } from 'astro:assets';
+
+import heroGroup from '../assets/impact/hero-group.jpg';
+import celebration from '../assets/impact/celebration-backpacks.jpg';
+import handoff1 from '../assets/impact/handoff-1.jpg';
+import handoff2 from '../assets/impact/handoff-2.jpg';
+import handoff3 from '../assets/impact/handoff-3.jpg';
+import handoff4 from '../assets/impact/handoff-4.jpg';
+import handoff5 from '../assets/impact/handoff-5.jpg';
+import handoff6 from '../assets/impact/handoff-6.jpg';
+import handoff7 from '../assets/impact/handoff-7.jpg';
+import candidGroup from '../assets/impact/candid-group.jpg';
+
+const photos = [
+  { src: heroGroup, alt: 'Students and families gather with our team banner at the Giving Drive in West Bengal' },
+  { src: celebration, alt: 'Students hold up their new backpacks and school supplies' },
+  { src: handoff1, alt: 'A volunteer hands a new backpack to a student' },
+  { src: handoff2, alt: 'A volunteer hands school supplies to a student' },
+  { src: handoff3, alt: 'A volunteer hands a backpack to a student in front of the Giving Drive banner' },
+  { src: handoff4, alt: 'A volunteer hands supplies to a student' },
+  { src: handoff5, alt: 'Volunteers distribute backpacks to a group of students' },
+  { src: handoff6, alt: 'A volunteer hands supplies to a student' },
+  { src: handoff7, alt: 'A volunteer hands a backpack to a student' },
+  { src: candidGroup, alt: 'Volunteers and students at the Giving Drive' },
+];
+
+const gallery = await Promise.all(
+  photos.map(async (p) => {
+    const full = await getImage({ src: p.src, width: 1600, format: 'webp' });
+    return { ...p, full: full.src };
+  })
+);
+---
+
+<Base title="Our Impact — Mu Alpha Theta" description="Photos from our Giving Drive at a village school in West Bengal, India — where the funds raised through our math coaching became backpacks, school supplies, and support for underprivileged children.">
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Our Impact</p>
+      <h1 style="max-width: 24ch;">Where the giving actually goes.</h1>
+      <p class="lead">
+        Every family we coach is invited to support underprivileged children in India. This
+        summer, that support became a <strong>Giving Drive</strong> at a village school in West
+        Bengal — backpacks, notebooks, and school supplies handed directly to students who needed
+        them, organized on the ground by our founders' family.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="gallery-grid">
+        {gallery.map((p, i) => (
+          <button class="gallery-item" type="button" data-full={p.full} aria-label={`View photo ${i + 1} of ${gallery.length}`}>
+            <Image src={p.src} alt={p.alt} widths={[320, 640]} sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw" />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap center">
+      <h2 style="max-width:28ch; margin-inline:auto;">This is what your gift makes possible.</h2>
+      <p class="lead" style="max-width:44ch; margin-inline:auto;">
+        Every contribution — of any size — goes directly toward moments like these.
+      </p>
+      <div style="margin-top:1.5rem;">
+        <a class="btn btn--primary" href="/support/">Support the next drive</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox__close" type="button" aria-label="Close">&times;</button>
+    <img class="lightbox__img" src="" alt="" />
+  </div>
+</Base>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.85rem;
+  }
+  .gallery-item {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    line-height: 0;
+  }
+  .gallery-item :global(img) {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  .gallery-item:hover :global(img) { transform: scale(1.05); }
+  .gallery-item:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(20, 15, 17, 0.92);
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox__img {
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: 8px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1.5rem;
+    font-size: 2.75rem;
+    line-height: 1;
+    color: #fff;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const lb = document.getElementById('lightbox');
+  if (lb) {
+    const lbImg = lb.querySelector('.lightbox__img');
+    const closeBtn = lb.querySelector('.lightbox__close');
+
+    const open = (full, alt) => {
+      lbImg.src = full;
+      lbImg.alt = alt;
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      lb.hidden = true;
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.gallery-item').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const img = btn.querySelector('img');
+        open(btn.dataset.full, img ? img.alt : '');
+      });
+    });
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+  }
+</script>
