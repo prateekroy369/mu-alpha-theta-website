@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import { Image, getImage } from 'astro:assets';
 
 // Auto-import every photo in src/assets/photos/ — drop new images there and
-// they appear here automatically. Files 01–26 are Grade Five, 27–33 Grade Four.
+// they appear here automatically. Files 01–25 are Grade Five, 26–33 Grade Four.
+// (17.jpg was removed as a duplicate of 16.jpg.)
 const modules = import.meta.glob('../assets/photos/*.{jpg,jpeg,png}', { eager: true });
 const entries = Object.entries(modules).sort(([a], [b]) => a.localeCompare(b));
 
@@ -11,7 +12,7 @@ const photos = await Promise.all(
   entries.map(async ([path, mod], i) => {
     const src = mod.default;
     const full = await getImage({ src, width: 1600, format: 'webp' });
-    const grade = i < 26 ? 'Grade Five' : 'Grade Four';
+    const grade = i < 25 ? 'Grade Five' : 'Grade Four';
     return { src, full: full.src, alt: `${grade} team — Math Masters 2026` };
   })
 );
