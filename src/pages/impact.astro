@@ -1,4 +1,4 @@
----
+﻿---
 import Base from '../layouts/Base.astro';
 import { Image, getImage } from 'astro:assets';
 
@@ -12,6 +12,23 @@ import handoff5 from '../assets/impact/handoff-5.jpg';
 import handoff6 from '../assets/impact/handoff-6.jpg';
 import handoff7 from '../assets/impact/handoff-7.jpg';
 import candidGroup from '../assets/impact/candid-group.jpg';
+import d2_01 from '../assets/impact/drive2/01.jpg';
+import d2_02 from '../assets/impact/drive2/02.jpg';
+import d2_03 from '../assets/impact/drive2/03.jpg';
+import d2_04 from '../assets/impact/drive2/04.jpg';
+import d2_05 from '../assets/impact/drive2/05.jpg';
+import d2_06 from '../assets/impact/drive2/06.jpg';
+import d2_07 from '../assets/impact/drive2/07.jpg';
+import d2_08 from '../assets/impact/drive2/08.jpg';
+import d2_09 from '../assets/impact/drive2/09.jpg';
+import d2_10 from '../assets/impact/drive2/10.jpg';
+import d2_11 from '../assets/impact/drive2/11.jpg';
+import d2_12 from '../assets/impact/drive2/12.jpg';
+import d2_13 from '../assets/impact/drive2/13.jpg';
+import d2_14 from '../assets/impact/drive2/14.jpg';
+import d2_15 from '../assets/impact/drive2/15.jpg';
+import d2_16 from '../assets/impact/drive2/16.jpg';
+import d2_17 from '../assets/impact/drive2/17.jpg';
 
 const photos = [
   { src: heroGroup, alt: 'Students and families gather with our team banner at the Giving Drive in West Bengal' },
@@ -26,8 +43,34 @@ const photos = [
   { src: candidGroup, alt: 'Volunteers and students at the Giving Drive' },
 ];
 
+const photos2 = [
+  { src: d2_09, alt: 'Students hold up new books and school supplies in front of the Mu Alpha Theta banner at the second Giving Drive' },
+  { src: d2_08, alt: 'A seated group of students proudly holds up their new books' },
+  { src: d2_07, alt: 'Students and volunteers gather around the banner with their new supplies' },
+  { src: d2_13, alt: 'Students lift their new books and supplies high with teachers and volunteers' },
+  { src: d2_12, alt: 'Students and volunteers pose together after the distribution' },
+  { src: d2_01, alt: 'Students sit on the floor of the school hall as the distribution begins' },
+  { src: d2_04, alt: 'Tables stacked with books, clothing, and school supplies beneath the Mu Alpha Theta banner' },
+  { src: d2_02, alt: 'A student receives her new supplies from a table of books and clothing' },
+  { src: d2_06, alt: 'A volunteer hands a student her new supplies' },
+  { src: d2_03, alt: 'A girl in a new dress stands in front of the banner' },
+  { src: d2_10, alt: 'Volunteers help a student choose her supplies as classmates look on' },
+  { src: d2_05, alt: 'A young boy receives a new set of clothes' },
+  { src: d2_11, alt: 'A volunteer hands a young boy a gift' },
+  { src: d2_14, alt: 'Girls line up in their new dresses' },
+  { src: d2_15, alt: 'A row of girls smile in their new dresses' },
+  { src: d2_16, alt: 'Girls stand together in their new dresses' },
+  { src: d2_17, alt: 'Children stand proudly in their new clothes' },
+];
 const gallery = await Promise.all(
   photos.map(async (p) => {
+    const full = await getImage({ src: p.src, width: 1600, format: 'webp' });
+    return { ...p, full: full.src };
+  })
+);
+
+const gallery2 = await Promise.all(
+  photos2.map(async (p) => {
     const full = await getImage({ src: p.src, width: 1600, format: 'webp' });
     return { ...p, full: full.src };
   })
@@ -40,10 +83,10 @@ const gallery = await Promise.all(
       <p class="eyebrow">Our Impact</p>
       <h1 style="max-width: 24ch;">Where the giving actually goes.</h1>
       <p class="lead">
-        Every family we coach is invited to support underprivileged children in India. This
-        summer, that support became a <strong>Giving Drive</strong> at a village school in West
-        Bengal — backpacks, notebooks, and school supplies handed directly to students who needed
-        them, organized on the ground by our founders' family.
+        Every family we coach is invited to support underprivileged children in India. That
+        support has now become two <strong>Giving Drives</strong> — backpacks, books, clothing, and
+        school supplies handed directly to students who needed them, organized on the ground by
+        our founders' family.
       </p>
     </div>
   </section>
@@ -52,9 +95,29 @@ const gallery = await Promise.all(
 
   <section class="section" style="padding-top:0;">
     <div class="wrap">
+      <p class="eyebrow">Giving Drive 1</p>
+      <h2 class="drive-title">A village school in West Bengal</h2>
+      <p class="lead drive-lead">Backpacks, notebooks, and school supplies for students at a village school.</p>
       <div class="gallery-grid">
         {gallery.map((p, i) => (
           <button class="gallery-item" type="button" data-full={p.full} aria-label={`View photo ${i + 1} of ${gallery.length}`}>
+            <Image src={p.src} alt={p.alt} widths={[320, 640]} sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw" />
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <p class="eyebrow">Giving Drive 2</p>
+      <h2 class="drive-title">The giving continues</h2>
+      <p class="lead drive-lead">Books, new clothes, and school supplies for another group of students — thanks to the families who supported us.</p>
+      <div class="gallery-grid">
+        {gallery2.map((p, i) => (
+          <button class="gallery-item" type="button" data-full={p.full} aria-label={`View Giving Drive 2 photo ${i + 1} of ${gallery2.length}`}>
             <Image src={p.src} alt={p.alt} widths={[320, 640]} sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw" />
           </button>
         ))}
@@ -81,6 +144,8 @@ const gallery = await Promise.all(
 </Base>
 
 <style>
+  .drive-title { margin-top: 0.25rem; }
+  .drive-lead { margin-bottom: 1.5rem; max-width: 56ch; }
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
